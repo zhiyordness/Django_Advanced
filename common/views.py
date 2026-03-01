@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.views.generic import TemplateView
 
-# Create your views here.
+
+class HomeView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    template_name = 'home.html'
+    permission_required = ['auth.view_user']

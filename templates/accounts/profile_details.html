@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Details</title>
+</head>
+<body>
+    <h1>Profile Details Page</h1>
+    <p>Username: {{ request.user.username }}</p>
+    <p>Email: {{ request.user.email }}</p>
+    <p>Full name: {{ request.user.get_full_name }}</p>
+    <p>Part of the company: {{ request.user.is_staff|yesno }}</p>
+    {% if request.user.is_superuser %}
+        <p>You have full access to the system.</p>
+    {% endif %}
+    <p>Date joined: {{ request.user.date_joined }}</p>
+    <hr>
+    <h2>Permissions</h2>
+    {% for permission in request.user.user_permissions.all %}
+        <p>{{ permission.name }}</p>
+    {% empty %}
+        <p>You don't have any permissions.</p>
+    {% endfor %}
+    <hr>
+    <h2>Permissions</h2>
+    {% for group in request.user.groups.all %}
+        <p>{{ group.name }}</p>
+    {% empty %}
+        <p>Not a part of any group.</p>
+    {% endfor %}
+</body>
+</html>

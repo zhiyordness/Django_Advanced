@@ -5,12 +5,17 @@
     <title>Home</title>
 </head>
 <body>
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
     <h1>Welcome</h1>
     {% if request.user.is_authenticated %}
-    <form action="{% url 'logout-cbv' %}" method="post">
+    <form action="{% url 'accounts:logout-fbv' %}" method="post">
         {% csrf_token %}
         <button>Logout</button>
     </form>
     {% endif %}
+    {% block content %}
+    {%  endblock %}
 </body>
 </html>
