@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 PROJECT_APPS = [
-    'auth_examples',
+    'accounts',
 ]
 # Application definition
 
